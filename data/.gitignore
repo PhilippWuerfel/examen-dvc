@@ -2,3 +2,6 @@
 /scaling_model.pkl
 /gbrt_model.pkl
 /prediction.csv
+/joblib_data
+/processed_data
+/raw_data

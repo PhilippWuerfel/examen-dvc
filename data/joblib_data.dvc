@@ -1,0 +1,6 @@
+outs:
+- md5: a8b9e9f9aeb6f18532c1757269ec59b3.dir
+  size: 1175
+  nfiles: 1
+  hash: md5
+  path: joblib_data
