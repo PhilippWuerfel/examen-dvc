@@ -26,5 +26,9 @@ def standard_scale_feature_data(X_train: pd.DataFrame, X_test: pd.DataFrame, dum
 
     if dump_scaler:
         joblib.dump(scaler, "data/joblib_data/scaler.pk1")
+    
+    # export scaled df's
+    X_train.to_csv("data/processed_data/X_train_scaled.csv")
+    X_test.to_csv("data/processed_data/X_test_scaled.csv")
 
     return X_train, X_test

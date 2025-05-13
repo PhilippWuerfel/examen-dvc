@@ -52,6 +52,7 @@ from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import ExtraTreesRegressor, HistGradientBoostingRegressor, RandomForestRegressor
 import joblib
+import json
 
 # Define models
 models = {
@@ -143,7 +144,7 @@ def hyperparameter_tuning_grid_search_cv(X_train, X_test, y_train, y_test):
 
         joblib.dump(search.best_params_, f"models/params_{model_name}.pk1")
 
-        # TODO move this to evaluation
+        # dedicated model training and evaluation at later stage
         # Test on test data
         y_pred = search.predict(X_test)
         test_r2_score = r2_score(y_true=y_test, y_pred=y_pred)
@@ -154,4 +155,8 @@ def hyperparameter_tuning_grid_search_cv(X_train, X_test, y_train, y_test):
             'best_cv_score': best_score,
             'test_r2_score': test_r2_score
         }
+
+    # export search results
+    with open(f"models/{search_name}_results.json", "w") as f:
+        json.dump(results, f)
     return results

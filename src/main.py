@@ -9,6 +9,8 @@ if __name__ == "__main__":
     from src.data.data_normalisation import standard_scale_feature_data
     from src.models.lazy_model_selection import select_lazy_regression_model
     from src.models.grid_search import hyperparameter_tuning_grid_search_cv
+    from src.models.model_training import train_extra_trees_regressor_model
+    from src.models.model_evaluation import evaluate_regression_model
     # data input
     df = read_csv_as_df("data/raw_data/raw.csv")
     
@@ -24,6 +26,12 @@ if __name__ == "__main__":
     # grid search for best parameters
     search_res  = hyperparameter_tuning_grid_search_cv(X_train_scaled, X_test_scaled, y_train, y_test)
     # model training
-
+    model = train_extra_trees_regressor_model(
+        X_train_scaled,
+        y_train,
+        params=search_res["ExtraTreesRegressor"]["best_params"],
+    )
     # model evaluation
+    model_evaluation = evaluate_regression_model("ExtraTreesRegressor", model, X_test_scaled, y_test)
+    print(model_evaluation)
     print("Muchas Gracias")
