@@ -1,0 +1,63 @@
+schema: '2.0'
+stages:
+  ml_pipeline:
+    cmd: python src/main.py
+    deps:
+    - path: data/raw_data
+      hash: md5
+      md5: 41dee78430cbebe25be9986bbb599d4a.dir
+      size: 333757
+      nfiles: 1
+    - path: src/data/data_normalisation.py
+      hash: md5
+      md5: 4252ed7c13f54a1df50a175ffbda2d19
+      size: 1722
+    - path: src/data/data_read.py
+      hash: md5
+      md5: 2deff9f36beab014b46a7817d0d4afe3
+      size: 176
+    - path: src/data/data_split.py
+      hash: md5
+      md5: 3a71abe03817faaaada80e28fd3b646b
+      size: 686
+    - path: src/main.py
+      hash: md5
+      md5: 498a650f53fed995c6bdb801962a068d
+      size: 2382
+    - path: src/models/grid_search.py
+      hash: md5
+      md5: 9ddb3d3a15cef212c47b6c5639a97ac5
+      size: 7864
+    - path: src/models/lazy_model_selection.py
+      hash: md5
+      md5: 9dcc114a1690379c5f4d704168fa1292
+      size: 492
+    - path: src/models/model_evaluation.py
+      hash: md5
+      md5: 7bb9f63caf07a9dcadc4b955e10fdde0
+      size: 1588
+    - path: src/models/model_training.py
+      hash: md5
+      md5: b10cb51a10a89b7f4eea19a517e97343
+      size: 687
+    outs:
+    - path: data/joblib_data
+      hash: md5
+      md5: a8b9e9f9aeb6f18532c1757269ec59b3.dir
+      size: 1175
+      nfiles: 1
+    - path: data/processed_data
+      hash: md5
+      md5: ca0a30e38b1e4bb19f40dd5b9eb130b7.dir
+      size: 294321
+      nfiles: 2
+    - path: metrics
+      hash: md5
+      md5: b91dfa52ea80c18691dc0fb5e889a56b.dir
+      size: 149
+      nfiles: 1
+    - path: models
+      hash: md5
+      md5: f0e364af87664f0b53d14e182ecf1716.dir
+      size: 4448709
+      nfiles: 5

@@ -5,6 +5,7 @@ along with a scores.json file in the metrics directory that will capture evaluat
 """
 from sklearn.metrics import mean_squared_error, r2_score, root_mean_squared_error
 import json
+import os
 
 def evaluate_regression_model(model_name, model, X_test, y_test):
     # Predict on test set
@@ -35,6 +36,10 @@ def evaluate_regression_model(model_name, model, X_test, y_test):
         "root_mean_squared_error": root_mean_squared_error_reg
     }
 
-    with open(f"metrics/{model_name}.json", "w") as f:
+    # export metrics
+    # make sure folders exist
+    file_name = f"metrics/{model_name}.json"
+    os.makedirs(os.path.dirname(file_name), exist_ok=True)
+    with open(file_name, "w") as f:
         json.dump(scores, f)
     return scores

@@ -1,6 +1,7 @@
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
 import joblib
+import os
 
 
 def categorize_categorical_quantitive_cols(df):
@@ -25,10 +26,19 @@ def standard_scale_feature_data(X_train: pd.DataFrame, X_test: pd.DataFrame, dum
     X_test[quant_cols] = scaler.transform(X_test[quant_cols])
 
     if dump_scaler:
-        joblib.dump(scaler, "data/joblib_data/scaler.pk1")
+        file_name = "./data/joblib_data/scaler.pk1"
+        os.makedirs(os.path.dirname(file_name), exist_ok=True)
+        joblib.dump(scaler, file_name)
     
     # export scaled df's
-    X_train.to_csv("data/processed_data/X_train_scaled.csv")
-    X_test.to_csv("data/processed_data/X_test_scaled.csv")
+    # make sure folders exist
+    file_name_x_train = "data/processed_data/X_train_scaled.csv"
+    file_name_x_test = "data/processed_data/X_test_scaled.csv"
+    
+    os.makedirs(os.path.dirname(file_name_x_train), exist_ok=True)
+    os.makedirs(os.path.dirname(file_name_x_test), exist_ok=True)
+    
+    X_train.to_csv(file_name_x_train)
+    X_test.to_csv(file_name_x_test)
 
     return X_train, X_test

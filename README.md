@@ -52,3 +52,38 @@
 - <code>git push origin --tags</code>
 - <code>dvc push</code>
 - <code>git push</code>
+
+## DVC Pipeline
+### Configure/Create a dvc pipeline
+- create dvc.yaml file (you can also create yml file with <code>dvc stage</code> command)
+
+```yaml
+stages:
+  ml_pipeline:
+    cmd: python src/main.py
+    deps:
+    - data/raw_data
+    - src/main.py
+    - src/data/data_read.py
+    - src/data/data_split.py
+    - src/data/data_normalisation.py
+    - src/models/lazy_model_selection.py
+    - src/models/grid_search.py
+    - src/models/model_training.py
+    - src/models/model_evaluation.py
+    outs:
+    - data/joblib_data
+    - data/processed_data
+    - metrics
+    - models
+```
+
+- cmd: bash commands to execute the pipeline
+- deps: dependencies of the pipeline (scripts, folders, files)
+- outs: outputs of pipeline (files, folders)
+
+### Trigger dvc pipeline
+<code>dvc repro</code>
+
+### Create dvc pipeline graph
+<code>dvc dag</code>

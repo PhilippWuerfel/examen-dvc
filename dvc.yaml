@@ -1,0 +1,18 @@
+stages:
+  ml_pipeline:
+    cmd: python src/main.py
+    deps:
+    - data/raw_data
+    - src/main.py
+    - src/data/data_read.py
+    - src/data/data_split.py
+    - src/data/data_normalisation.py
+    - src/models/lazy_model_selection.py
+    - src/models/grid_search.py
+    - src/models/model_training.py
+    - src/models/model_evaluation.py
+    outs:
+    - data/joblib_data
+    - data/processed_data
+    - metrics
+    - models

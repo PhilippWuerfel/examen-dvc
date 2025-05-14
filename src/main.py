@@ -4,6 +4,14 @@ Scripts will be programmed in a way that working directory is the root of the pr
 """
 if __name__ == "__main__":
 
+    import os
+    import sys
+    # Dynamically set the root directory of the project
+    ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir(ROOT_DIR)  # Change the working directory to the project root
+    sys.path.insert(0, ROOT_DIR)  # Add the project root to PYTHONPATH
+    print(f"Current working directory: {os.getcwd()}")
+
     from src.data.data_read import read_csv_as_df
     from src.data.data_split import split_data
     from src.data.data_normalisation import standard_scale_feature_data

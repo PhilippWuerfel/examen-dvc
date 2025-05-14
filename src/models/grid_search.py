@@ -53,6 +53,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import ExtraTreesRegressor, HistGradientBoostingRegressor, RandomForestRegressor
 import joblib
 import json
+import os
 
 # Define models
 models = {
@@ -142,7 +143,10 @@ def hyperparameter_tuning_grid_search_cv(X_train, X_test, y_train, y_test):
         best_params = search.best_params_
         best_score = search.best_score_
 
-        joblib.dump(search.best_params_, f"models/params_{model_name}.pk1")
+        file_name_params = f"models/params_{model_name}.pk1"
+        os.makedirs(os.path.dirname(file_name_params), exist_ok=True)
+        # export tuned params
+        joblib.dump(search.best_params_, file_name_params)
 
         # dedicated model training and evaluation at later stage
         # Test on test data
@@ -157,6 +161,9 @@ def hyperparameter_tuning_grid_search_cv(X_train, X_test, y_train, y_test):
         }
 
     # export search results
-    with open(f"models/{search_name}_results.json", "w") as f:
+    # make sure folders exist
+    file_name_results = f"models/{search_name}_results.json"
+    os.makedirs(os.path.dirname(file_name_results), exist_ok=True)
+    with open(file_name_results, "w") as f:
         json.dump(results, f)
     return results
