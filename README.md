@@ -1,5 +1,4 @@
-# Examen DVC et Dagshub
-Dans ce dépôt vous trouverez l'architecture proposé pour mettre en place la solution de l'examen. 
+# DVC & Dagshub
 
 ```bash       
 ├── examen_dvc          
@@ -13,8 +12,33 @@ Dans ce dépôt vous trouverez l'architecture proposé pour mettre en place la s
 │   ├── src       
 │   └── README.md.py       
 ```
-N'hésitez pas à rajouter les dossiers ou les fichiers qui vous semblent pertinents.
 
-Vous devez dans un premier temps *Fork* le repo et puis le cloner pour travailler dessus. Le rendu de cet examen sera le lien vers votre dépôt sur DagsHub. Faites attention à bien mettre https://dagshub.com/licence.pedago en tant que colaborateur avec des droits de lecture seulement pour que ce soit corrigé.
+## DVC Commands and typical workflow together with git
+### Initialize dvc
+- <code>dvc init</code>
 
-Vous pouvez télécharger les données à travers le lien suivant : https://datascientest-mlops.s3.eu-west-1.amazonaws.com/mlops_dvc_fr/raw.csv.
+### Add folders or files to be tracked by dvc
+- make sure to remove from gitignore as dvc will configure gitignore
+
+- <code>dvc add data/raw_data</code>
+
+### Push changes to dvc
+- e.g. do this after you've added new folder or file to dvc
+- <code>dvc push</code>
+
+### Commit changes to dvc when files change
+- make sure to push after commit
+- <code>dvc commit</code>
+
+### Pull data
+- e.g. when you want to get files from remote storage
+- Note: pull = fetch + checkout
+- <code>dvc pull</code>
+- alternative:
+  * <code>dvc fetch</code> (retrieve files into dvc cache)
+  * <code>dvc checkout</code> (copy files from cache to folder)
+
+### Track data changes together with git tags
+- Changes happened e.g. updated processing steps of data
+- <code>git add --all</code>
+- <code>git commit -m "Update and execution of preprocessing of data"</code>
