@@ -45,6 +45,7 @@
   2. git > add, commit, tag, push
   3. dvc > push
   4. git > push
+- <code>dvc commit</code>
 - <code>git add --all</code>
 - <code>git commit -m "Update and execution of preprocessing of data"</code>
 - <code>git tag -a preprocess_001 -m "First version of data split, normalisation, model selection, hyperparameter tuning, model training and evaluation"</code>
