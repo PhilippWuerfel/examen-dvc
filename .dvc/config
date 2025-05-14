@@ -1,4 +1,7 @@
 [core]
-    remote = remote_storage
+    remote = origin
 ['remote "remote_storage"']
     url = ../../dvc_remote_exam
+['remote "origin"']
+    url = s3://dvc
+    endpointurl = https://dagshub.com/PhilippWuerfel/examen-dvc.s3

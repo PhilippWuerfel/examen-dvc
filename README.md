@@ -1,3 +1,7 @@
+Author: Philipp Würfel
+Mail: PhilippWuerfel@live.de
+DagsHub: https://dagshub.com/PhilippWuerfel/examen-dvc
+
 # DVC & Dagshub
 
 ```bash       
