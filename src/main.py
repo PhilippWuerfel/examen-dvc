@@ -12,26 +12,35 @@ if __name__ == "__main__":
     from src.models.model_training import train_extra_trees_regressor_model
     from src.models.model_evaluation import evaluate_regression_model
     # data input
-    df = read_csv_as_df("data/raw_data/raw.csv")
+    FILE_PATH = "data/raw_data/raw.csv"
+
+    print(f"Reading in file: {FILE_PATH}")
+    df = read_csv_as_df(FILE_PATH)
     
     # data splitting
+    print("Splitting data (feature, target, train_test_split)")
     X_train, X_test, y_train, y_test = split_data(df=df, target="silica_concentrate")
 
     # data normalisation
+    print("Normalisation of data")
     X_train_scaled, X_test_scaled = standard_scale_feature_data(X_train, X_test, dump_scaler=True)
 
     # optional: lazy model selection, analysis which can be used to configure GridSearch
-    # select_lazy_regression_model(X_train_scaled, X_test_scaled, y_train, y_test)
+    print("Pre Model Analysis with LazyPredict")
+    select_lazy_regression_model(X_train_scaled, X_test_scaled, y_train, y_test)
     
     # grid search for best parameters
+    print("Hyperparameter tuning with GridSearchCV")
     search_res  = hyperparameter_tuning_grid_search_cv(X_train_scaled, X_test_scaled, y_train, y_test)
     # model training
+    print("Model training")
     model = train_extra_trees_regressor_model(
         X_train_scaled,
         y_train,
         params=search_res["ExtraTreesRegressor"]["best_params"],
     )
     # model evaluation
+    print("Model evaluation")
     model_evaluation = evaluate_regression_model("ExtraTreesRegressor", model, X_test_scaled, y_test)
     print(model_evaluation)
-    print("Muchas Gracias")
+    print("Muchas Gracias for example ml process cycle")

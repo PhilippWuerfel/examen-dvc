@@ -35,10 +35,15 @@
 - Note: pull = fetch + checkout
 - <code>dvc pull</code>
 - alternative:
-  * <code>dvc fetch</code> (retrieve files into dvc cache)
-  * <code>dvc checkout</code> (copy files from cache to folder)
+  - <code>dvc fetch</code> (retrieve files into dvc cache)
+  - <code>dvc checkout</code> (copy files from cache to folder)
 
 ### Track data changes together with git tags
 - Changes happened e.g. updated processing steps of data
+- Workflow
+  1. git > add, commit, tag, push
+  2. dvc > push
+  3. git > push
 - <code>git add --all</code>
 - <code>git commit -m "Update and execution of preprocessing of data"</code>
+- <code>git tag -a preprocess_001 -m "First version of data split, normalisation, model selection, hyperparameter tuning, model training and evaluation"</code>
