@@ -143,7 +143,7 @@ def hyperparameter_tuning_grid_search_cv(X_train, X_test, y_train, y_test):
         best_params = search.best_params_
         best_score = search.best_score_
 
-        file_name_params = f"models/params_{model_name}.pk1"
+        file_name_params = f"model_params/params_{model_name}.pk1"
         os.makedirs(os.path.dirname(file_name_params), exist_ok=True)
         # export tuned params
         joblib.dump(search.best_params_, file_name_params)
@@ -162,7 +162,7 @@ def hyperparameter_tuning_grid_search_cv(X_train, X_test, y_train, y_test):
 
     # export search results
     # make sure folders exist
-    file_name_results = f"models/{search_name}_results.json"
+    file_name_results = f"model_params/{search_name}_results.json"
     os.makedirs(os.path.dirname(file_name_results), exist_ok=True)
     with open(file_name_results, "w") as f:
         json.dump(results, f)

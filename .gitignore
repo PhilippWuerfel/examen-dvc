@@ -1,5 +1,4 @@
 /venv
-/models
 /metrics
 
 # Byte-compiled / optimized / DLL files
@@ -166,3 +165,5 @@ cython_debug/
 # VSCode configuration files
 .vscode/
 /d
+/model_params
+/models

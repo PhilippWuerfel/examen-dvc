@@ -61,3 +61,105 @@ stages:
       md5: f0e364af87664f0b53d14e182ecf1716.dir
       size: 4448709
       nfiles: 5
+  prepare:
+    cmd: python src/main_prepare.py
+    deps:
+    - path: data/raw_data
+      hash: md5
+      md5: 41dee78430cbebe25be9986bbb599d4a.dir
+      size: 333757
+      nfiles: 1
+    - path: src/data/data_normalisation.py
+      hash: md5
+      md5: 4252ed7c13f54a1df50a175ffbda2d19
+      size: 1722
+    - path: src/data/data_read.py
+      hash: md5
+      md5: 2deff9f36beab014b46a7817d0d4afe3
+      size: 176
+    - path: src/data/data_split.py
+      hash: md5
+      md5: ea3b97a5dafd9d0c5ffcd0d15c1142fe
+      size: 1597
+    - path: src/main_prepare.py
+      hash: md5
+      md5: 7570a943eddea0ef1f63641140fe634f
+      size: 1792
+    - path: src/models/grid_search.py
+      hash: md5
+      md5: 6291040b2d1bb3c9891f8006e4170c90
+      size: 7876
+    - path: src/models/lazy_model_selection.py
+      hash: md5
+      md5: 9dcc114a1690379c5f4d704168fa1292
+      size: 492
+    outs:
+    - path: data/joblib_data
+      hash: md5
+      md5: a8b9e9f9aeb6f18532c1757269ec59b3.dir
+      size: 1175
+      nfiles: 1
+    - path: data/processed_data
+      hash: md5
+      md5: 81b076934fcb772d0b5789af6132ec5e.dir
+      size: 608412
+      nfiles: 6
+    - path: model_params
+      hash: md5
+      md5: d031f3d0d2b1efdbd732d88ab5957070.dir
+      size: 1058
+      nfiles: 4
+  train:
+    cmd: python src/main_train.py
+    deps:
+    - path: data/processed_data
+      hash: md5
+      md5: 81b076934fcb772d0b5789af6132ec5e.dir
+      size: 608412
+      nfiles: 6
+    - path: model_params
+      hash: md5
+      md5: d031f3d0d2b1efdbd732d88ab5957070.dir
+      size: 1058
+      nfiles: 4
+    - path: src/main_train.py
+      hash: md5
+      md5: 0252f4fbd0f0ea59a1a43c6858d066e8
+      size: 1145
+    - path: src/models/model_training.py
+      hash: md5
+      md5: b10cb51a10a89b7f4eea19a517e97343
+      size: 687
+    outs:
+    - path: models
+      hash: md5
+      md5: f89285fe0965963534c5c7b76bcec5aa.dir
+      size: 4855593
+      nfiles: 1
+  evaluate:
+    cmd: python src/main_evaluate.py
+    deps:
+    - path: data/processed_data
+      hash: md5
+      md5: 81b076934fcb772d0b5789af6132ec5e.dir
+      size: 608412
+      nfiles: 6
+    - path: models
+      hash: md5
+      md5: f89285fe0965963534c5c7b76bcec5aa.dir
+      size: 4855593
+      nfiles: 1
+    - path: src/main_evaluate.py
+      hash: md5
+      md5: 61b0612946e488ece89c1d9f10748495
+      size: 1201
+    - path: src/models/model_evaluation.py
+      hash: md5
+      md5: 7bb9f63caf07a9dcadc4b955e10fdde0
+      size: 1588
+    outs:
+    - path: metrics
+      hash: md5
+      md5: d14f92cf7de6c2af7ecd649ff5043fac.dir
+      size: 149
+      nfiles: 1
